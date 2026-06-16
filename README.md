@@ -19,14 +19,12 @@ This follows the same pattern as the [community-scripts/ProxmoxVE](https://githu
 
 ## Install
 
-1. Push this repo to your own GitHub repo (e.g. `github.com/<you>/kokoro-fastapi-proxmox`), or just keep the two scripts somewhere reachable by `curl`.
+1. Push this repo to your own GitHub repo (e.g. `github.com/kgolding/kokoro-fastapi-proxmox`), or just keep the two scripts somewhere reachable by `curl`.
 2. On the Proxmox shell (the host, not inside a container), run:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/<you>/kokoro-fastapi-proxmox/main/ct/kokoro-fastapi.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kgolding/kokoro-fastapi-proxmox/main/ct/kokoro-fastapi.sh)"
 ```
-
-Replace `<you>/kokoro-fastapi-proxmox` with wherever you've hosted these files.
 
 3. Follow the prompts (Default for a quick setup with the values above, or Advanced to change CPU/RAM/disk/storage/network/etc).
 
