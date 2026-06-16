@@ -19,7 +19,7 @@ This follows the same pattern as the [community-scripts/ProxmoxVE](https://githu
 
 ## Install
 
-1. Push this repo to your own GitHub repo (e.g. `github.com/kgolding/kokoro-fastapi-proxmox`), or just keep the two scripts somewhere reachable by `curl`.
+1. Push this repo to your own public GitHub repo (it defaults to `github.com/kgolding/kokoro-fastapi-proxmox` - edit `KOKORO_REPO_URL` near the bottom of `ct/kokoro-fastapi.sh` if you fork it elsewhere), keeping the `ct/` and `install/` folders at the repo root.
 2. On the Proxmox shell (the host, not inside a container), run:
 
 ```bash
@@ -27,6 +27,10 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/kgolding/kokoro-fastapi-
 ```
 
 3. Follow the prompts (Default for a quick setup with the values above, or Advanced to change CPU/RAM/disk/storage/network/etc).
+
+### Why you'll see one harmless-looking error
+
+Partway through, you'll likely see a line like `curl: (22) The requested URL returned error: 404`. That's expected: `build.func` (the shared framework this script borrows from community-scripts/ProxmoxVE) always tries to fetch the app's installer from the *official* community-scripts catalog first, and Kokoro-FastAPI isn't listed there. `ct/kokoro-fastapi.sh` notices that and runs the real installer from this repo instead, right afterward - look for "Installing Kokoro-FastAPI (custom script - not yet in community-scripts)" a moment later in the output, which is the part that actually does the work.
 
 When it finishes, it prints the container's IP and three URLs:
 
